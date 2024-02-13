@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital clock</title>
+    <style>
+        #displayTime{
+                color:white;
+                text-align: center;
+                margin-top: 20%;
+                font-size: 50px;
+            }
+    </style>
+</head>
+<body style="background-color: black;">
+    <div id="displayTime"></div>
+    <script>
+       function myClock(){
+         // to get the hours, min and seconds. we use the inbult Date() funtion to fetch
+         let date = new Date();//date is now a var which can be used to get the hours, min and seconds.
+        
+        // creating the variables to store the hours, min and seconds
+        let hours = date.getHours();//it returns a number
+        let mins = date.getMinutes();
+        let secs = date.getSeconds();
+        let session = "PM";//initially we can set the session as per the time we developed the code
+
+        // make the clock to a 12 hr format.
+        if(hours > 12) hours -= 12;
+        if(hours == 0) hours = 12;
+         
+        // we need the digits problem to be solved.
+        if(hours < 10) hours = "0"+hours;
+        if(mins < 10) mins = "0"+mins;
+        if(secs < 10) secs = "0"+secs;
+
+
+        // we need to change the session 
+        if(hours == 12) session = "AM";
+
+        setTimeout(myClock, 1000);
+
+        // as we have the h, m, s we can print in the div according to the format
+        // we use getElementbyid to approach the respective div
+        document.getElementById("displayTime").innerHTML = hours+":"+mins+":"+secs+" "+session;
+
+       }
+       myClock();//call is needed to wake the clock
+    </script>
+</body>
+</html>
+<!-- here the page is static and clock only changes when reloaded but we need the clock to tick every second. -->
+<!-- 
+    now the clock should have o when it's a one digit number.
+ -->
